@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-
+#restrictions: no usage of statistics functions.
 def generate_random_vector(n, lower_bound=0, upper_bound=10000):
     """
     Generates a 1D array of random integers.
