@@ -110,11 +110,10 @@ def robust_scaling_algorithm(vecteur_haut_vitesse):
 # Measure of base information
 print(f"\n\nMeasures of base information\n")
 print(f"Total elements in set: {vecteur_haute_vitesse.size}")
-print(f"Total sum of values: {np.sum(vecteur_haute_vitesse)}")
-print(f"Minimum value in observations: {np.min(vecteur_haute_vitesse)}")
+print(f"Total sum of values: {vecteur_haute_vitesse.sum()}")
 print(f"Minimum value in observations: {vecteur_haute_vitesse.min()}")
-print(f"Maximum value in observations: {np.max(vecteur_haute_vitesse)}")
-print(f"Maximum value in observations: {vecteur_haute_vitesse.max}")
+print(f"Maximum value in observations: {vecteur_haute_vitesse.max()}")
+print(f"NaN values: {nan_element_count(vecteur_haute_vitesse)}")
 print(f"NaN values: {nan_element_count(vecteur_haute_vitesse)}")
 
 # Measures of central tendency
