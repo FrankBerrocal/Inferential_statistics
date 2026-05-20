@@ -23,6 +23,7 @@ from scipy.stats import gaussian_kde
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
 from sklearn.metrics import classification_report, confusion_matrix
+import pandas as pd
 
 # create df with csv the amount column.
 df_financial_1D = pl.read_csv('/Users/frankberrocalazofeifa/Documents/GitHub/Inferential_statistics/Synthetic_Financial_datasets_log.csv',
@@ -119,6 +120,10 @@ def logarithmic_transformation_algorithm(n_array):
 df_financial_nD = pl.read_csv(
     '/Users/frankberrocalazofeifa/Documents/GitHub/Inferential_statistics/Synthetic_Financial_datasets_log.csv')
 
+
+df = pd.DataFrame(df_financial_nD['nameOrig'])
+
+print(df.nunique())
 
 # 1. Initialize the Lazy Engine
 optimized_request = (
