@@ -304,8 +304,7 @@ print(f"Standard Deviation: {np.std(complete_vector_compressed, axis=0)}")
 print(f"Conclusion:  Scale is changed.")
 
 
-
-#Charts
+# Charts
 # Generate the normalized histogram canvas for the non- transformed, non-compressed Amount
 # Note: density=True is mandatory for the curve's area to align with the bars
 data_slice = x_features[:, 0]
@@ -329,7 +328,6 @@ plt.legend()
 plt.show()
 
 
-
 # Generate the normalized histogram canvas for the transformed and compressed Amount
 data_slice2 = complete_vector_compressed[:, 0]
 plt.hist(data_slice2, bins=5, density=True, alpha=0.6,
@@ -346,20 +344,21 @@ print("\n=== Initializing Dimensional Split ===")
 # 1. The Matrix Schism (80% Training / 20% Validation)
 # We map the scaled 2D matrix (X) to the pure 1D target vector (Y)
 X_train, X_test, y_train, y_test = train_test_split(
-    complete_vector_compressed, 
-    y_target, 
-    test_size=0.20, 
-    random_state=42, 
-    stratify=y_target # CRITICAL: Ensures the rare fraud cases are evenly distributed
+    complete_vector_compressed,
+    y_target,
+    test_size=0.20,
+    random_state=42,
+    stratify=y_target  # CRITICAL: Ensures the rare fraud cases are evenly distributed
 )
 
 
 print(f"Training Tensor Shape: {X_train.shape}")
 print(f"Validation Tensor Shape: {X_test.shape}")
 
-#configure to test outcomes.  I cannot run the optimization due to RAM is deleted and future state cannot be calculated.
-#Use Jupyter Notebooks
-scale_pos = 1 #neutral, fraud is 100 times painful than false alarms, 1-5 is a low penalty.
+# configure to test outcomes.  I cannot run the optimization due to RAM is deleted and future state cannot be calculated.
+# Use Jupyter Notebooks
+# neutral, fraud is 100 times painful than false alarms, 1-5 is a low penalty.
+scale_pos = 1
 
 # 2. Engine Parameterization
 # XGBoost is highly optimized for imbalanced, spiked, tabular datasets
@@ -368,7 +367,8 @@ xgb_engine = xgb.XGBClassifier(
     tree_method='hist',       # Hardware acceleration for large continuous matrices
     max_depth=6,              # Limits the geometric depth to prevent overfitting
     learning_rate=0.1,        # The step size for gradient descent
-    scale_pos_weight=scale_pos,     # Mathematical penalty multiplier for missing a fraud case
+    # Mathematical penalty multiplier for missing a fraud case
+    scale_pos_weight=scale_pos,
     random_state=42
 )
 
