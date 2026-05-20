@@ -357,7 +357,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 print(f"Training Tensor Shape: {X_train.shape}")
 print(f"Validation Tensor Shape: {X_test.shape}")
 
-#configure to test outcomes
+#configure to test outcomes.  I cannot run the optimization due to RAM is deleted and future state cannot be calculated.
+#Use Jupyter Notebooks
 scale_pos = 1 #neutral, fraud is 100 times painful than false alarms, 1-5 is a low penalty.
 
 # 2. Engine Parameterization
