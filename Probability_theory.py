@@ -43,3 +43,30 @@ print(f"Event C: count={count_c}, observations={obs_c}")
 # Verify partition: A and B should be exhaustive and mutually exclusive
 assert count_a + count_b == len(pipeline_a)
 print("A and B partition the space correctly.")
+
+
+assert count_a == 10
+assert obs_a == [145, 148, 147, 146, 148, 147, 146, 148, 147, 148]
+assert len(obs_a) == count_a
+print("Test 1 passed: Event A")
+
+def event_b_condition(x): return x > 148
+count_b, obs_b = count_event(pipeline_a, event_b_condition)
+
+assert count_a + count_b == len(pipeline_a)
+assert count_b == 5
+print("Test 2 passed: A and B partition space")
+
+def event_all_condition(x): return True  # All observations
+count_all, obs_all = count_event(pipeline_a, event_all_condition)
+
+assert count_all == len(pipeline_a)
+assert count_all == 15
+
+def event_none_condition(x): return False  # No observations
+count_none, obs_none = count_event(pipeline_a, event_none_condition)
+
+assert count_none == 0
+assert obs_none == []
+
+print("Test 3 passed: Edge cases")
